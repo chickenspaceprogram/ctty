@@ -1,8 +1,14 @@
 #include <stdio.h>
-#include "keypress.h"
+#include "keyselect.h"
 
 int main(void) {
-    while (1) {
-        printf("%x\n", GETCH());
-    }
+    char *seqs[] = {
+        "\x1b[A",
+        "\x1b[B",
+        "\x1b[D",
+        "\x1b[C",
+    };
+    int seq_lens[] = {3, 3, 3, 3};
+    int num_seqs = 4;
+    printf("%d\n", select_char(seqs, seq_lens, num_seqs));
 }
