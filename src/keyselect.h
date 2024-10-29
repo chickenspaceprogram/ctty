@@ -1,8 +1,18 @@
+#ifndef KEYSELECT_H
+#define KEYSELECT_H
 #include "keypress.h"
 
+/**
+ * Struct name: sequence
+ * Date created: 10/29/2024
+ * Date last modified: 10/29/2024
+ * Description: Contains the characters in a escape sequence.
+ * `chars` : An array containing the sequence of characters in the sequence.
+ * `len` : The length of the sequence. For example, "abcd" has a length of 4.
+ */
 typedef struct sequence {
-    char *chars;
-    int len;
+    char *chars; // An array containing the sequence of characters in the sequence.
+    int len; // The length of the sequence. For example, "abcd" has a length of 4.
 } sequence;
 
 /**
@@ -11,13 +21,11 @@ typedef struct sequence {
  * Date last modified: 10/29/2024
  * Description: Waits until the user enters a character or escape sequence in `char_sequences`, then returns the index of the selected sequence.
  * Inputs: 
- * `char_sequences` :   An array of char arrays of variable length that contain the sequences to search for.
- *                      The arrays in this array are *not* assumed to be null-terminated, since some escape sequences on some platforms contain the null character.
- * `sequence_lengths` : The length of each char array in char_sequences.
+ * `sequences` : An array containing sequence structs for the escape sequences to be entered.
  * `num_sequences` : The number of sequences in `char_sequences`.
  * Outputs: The index of the sequence that was entered.
  */
-int select_char(const char **char_sequences, int *sequence_lengths, int num_sequences);
+int select_char(sequence *sequences, int num_sequences);
 
 /**
  * Function name: check_char
@@ -25,10 +33,10 @@ int select_char(const char **char_sequences, int *sequence_lengths, int num_sequ
  * Date last modified: 10/29/2024
  * Description: 
  * Inputs: 
- * `char_sequences` :   An array of char arrays of variable length that contain the sequences to search for.
- *                      The arrays in this array are *not* assumed to be null-terminated, since some escape sequences on some platforms contain the null character.
- * `sequence_lengths` : The length of each char array in char_sequences.
+ * `sequences` : An array containing sequence structs for the escape sequences to be entered.
+ * `num_sequences` : The number of sequences in `char_sequences`.
  * Outputs: The index of the sequence that was entered, or -1 if the sequence was invalid.
  */
-int check_char(const char **char_sequences, int *sequence_lengths, int num_sequences);
+int check_char(sequence *sequences, int num_sequences);
 
+#endif

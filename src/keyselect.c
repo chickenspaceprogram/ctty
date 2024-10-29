@@ -1,14 +1,14 @@
 #include "keyselect.h"
 
-int select_char(const char **char_sequences, int *sequence_lengths, int num_sequences) {
-    int ch = check_char(char_sequences, sequence_lengths, num_sequences);
+int select_char(sequence *sequences, int num_sequences) {
+    int ch = check_char(sequences, num_sequences);
     while (ch == -1) {
-        ch = check_char(char_sequences, sequence_lengths, num_sequences);
+        ch = check_char(sequences, num_sequences);
     }
     return ch;
 }
 
-int check_char(const char **char_sequences, int *sequence_lengths, int num_sequences) {
+int check_char(sequence *sequences, int num_sequences) {
     int valid_matches[num_sequences];
     int longest_match = -1;
     int j = 0;
@@ -25,11 +25,11 @@ int check_char(const char **char_sequences, int *sequence_lengths, int num_seque
         current_char = GETCH();
         for (int i = 0; i < num_sequences; ++i) {
             if (valid_matches[i]) {
-                if (current_char != char_sequences[i][j]) {
+                if (current_char != sequences[i].chars[j]) {
                     valid_matches[i] = 0;
                     --num_chars_left;
                 }
-                else if (j == sequence_lengths[i] - 1) {
+                else if (j == sequences[i].len - 1) {
                     valid_matches[i] = 0;
                     longest_match = i;
                     --num_chars_left;

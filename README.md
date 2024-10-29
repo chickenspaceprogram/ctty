@@ -15,3 +15,5 @@ Please excuse the commenting scheme, the professor for this class requires what 
 `keypress.h` : Provides functions and macros to facilitate detecting keypresses without waiting for the user to press [Enter].
 
 `keyselect.h` : Provides a simple way to detect and return only certain keypresses.
+
+`keycodes.h` : A header file containing preprocessor macros for common keycodes.

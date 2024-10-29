@@ -1,5 +1,5 @@
-#ifndef TERMINAL_H
-#define TERMINAL_H
+#ifndef SCREEN_H
+#define SCREEN_H
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include "keyselect.h"
+#include "keycodes.h"
 
 int main(void) {
-    char *seqs[] = {
-        "\x1b[A",
-        "\x1b[B",
-        "\x1b[D",
-        "\x1b[C",
+    sequence seqs[] = {
+        CTTY_UP,
+        CTTY_DOWN,
+        CTTY_LEFT,
+        CTTY_RIGHT,
+        CTTY_ESC,
+        CTTY_DEL,
     };
-    int seq_lens[] = {3, 3, 3, 3};
-    int num_seqs = 4;
-    printf("%d\n", select_char(seqs, seq_lens, num_seqs));
+    printf("%d\n", select_char(seqs, 6));
 }
