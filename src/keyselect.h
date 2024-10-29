@@ -1,5 +1,10 @@
 #include "keypress.h"
 
+typedef struct sequence {
+    char *chars;
+    int len;
+} sequence;
+
 /**
  * Function name: select_char
  * Date created: 10/29/2024
