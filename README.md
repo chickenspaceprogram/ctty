@@ -2,11 +2,11 @@
 
 A simple cross-platform terminal graphics library, written in C.
 
-This project provides preprocessor macros that make dealing with terminal graphics across different platforms less painful.
-It's not all-inclusive, and there's definitely things I haven't added.
-However, I'm mostly fine with that since half the purpose of this library was to facilitate code reuse when completing programming assignments for a CS course I'm taking.
+To use this, simply copy the files in src/ into your current project. Ensure that they're all in the same directory. You can omit any of them that you won't use, with the exception that `screen.h` and `keyselect.h` require `keypress.h`, and all the `.h` files require their corresponding `.c` files.
 
-Please excuse the commenting scheme, the professor for this class requires what I'd personally deem an excessive amount of comments.
+This project provides functions and preprocessor macros that make dealing with terminal graphics across different platforms less painful.
+It's not all-inclusive, and there's definitely things I haven't added.
+However, half the purpose of this library was to facilitate code reuse when completing programming assignments for a CS course I'm taking.
 
 `escape-codes.h` : Provides macros for some common ANSI escape codes
 
@@ -14,8 +14,8 @@ Please excuse the commenting scheme, the professor for this class requires what 
 
 `keypress.h` : Provides functions and macros to facilitate detecting keypresses without waiting for the user to press [Enter].
 
-`keyselect.h` : Provides a simple way to detect and return only certain keypresses.
+`keyselect.h` : Provides a simple way to detect and return only certain keypresses. **Dependency:** `keypress.h`
 
 `keycodes.h` : A header file containing preprocessor macros for common keycodes.
 
-`main.c` : An example program showing how to use ctty. This program waits for the user to press 'a', 's', 'd', 'f', or one of the arrow keys, and then prints the index of that key.
+`main.c` : An example program showing how to use ctty. This program waits for the user to press 'a', 's', 'd', 'f', or one of the arrow keys, and then prints the index of that key in the array passed to keyselect.
