@@ -17,3 +17,5 @@ Please excuse the commenting scheme, the professor for this class requires what 
 `keyselect.h` : Provides a simple way to detect and return only certain keypresses.
 
 `keycodes.h` : A header file containing preprocessor macros for common keycodes.
+
+`main.c` : An example program showing how to use ctty. This program waits for the user to press 'a', 's', 'd', 'f', or one of the arrow keys, and then prints the index of that key.

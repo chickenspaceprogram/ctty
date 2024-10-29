@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "keyselect.h"
-#include "keycodes.h"
+#include "keypress-codes.h"
 
 int main(void) {
     sequence seqs[] = {
@@ -8,8 +8,10 @@ int main(void) {
         CTTY_DOWN,
         CTTY_LEFT,
         CTTY_RIGHT,
-        CTTY_ESC,
-        CTTY_DEL,
+        {"a", 1},
+        {"s", 1},
+        {"d", 1},
+        {"f", 1},
     };
-    printf("%d\n", select_char(seqs, 6));
+    printf("%d\n", select_char(seqs, 8));
 }

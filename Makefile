@@ -1,4 +1,5 @@
 # "Visual Studio at home"
+# This is my standard makefile for compiling test projects.
 
 # To compile, run `make` or `make all`
 # To run, run `make run`.
