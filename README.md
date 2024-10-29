@@ -13,3 +13,5 @@ Please excuse the commenting scheme, the professor for this class requires what 
 `screen.h` : Provides macros to clear the screen and wait for a user's next keypress. **Dependency:** `keypress.h`
 
 `keypress.h` : Provides functions and macros to facilitate detecting keypresses without waiting for the user to press [Enter].
+
+`keyselect.h` : Provides a simple way to detect and return only certain keypresses.
