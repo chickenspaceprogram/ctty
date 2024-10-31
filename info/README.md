@@ -18,4 +18,4 @@ However, half the purpose of this library was to facilitate code reuse when comp
 
 `keycodes.h` : A header file containing preprocessor macros for common keycodes.
 
-`main.c` : An example program showing how to use ctty. This program waits for the user to press 'a', 's', 'd', 'f', or one of the arrow keys, and then prints the index of that key in the array passed to keyselect.
+`info/main.c` : An example program showing how to use ctty. This program waits for the user to press 'a', 's', 'd', 'f', or one of the arrow keys, and then prints the index of that key in the array passed to keyselect.
