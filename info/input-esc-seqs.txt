@@ -1,4 +1,5 @@
 All values here are in hex.
+This is here for chickenspaceprogram to reference, feel free to ignore it.
 
 Windows:
 
