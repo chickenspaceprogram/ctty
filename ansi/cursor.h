@@ -15,6 +15,15 @@ typedef struct position {
 #define CURSOR_LEFT
 #define CURSOR_RIGHT
 
+
+/**
+ * Function name: get_cursor_position
+ * Date created: 31 Oct 2024
+ * Date last modified: 31 Oct 2024
+ * Description: Returns a struct containing the current position of the cursor
+ * Inputs: none
+ * Outputs: A struct containing the current position of the cursor.
+ */
 Position get_cursor_position(void);
 
 #endif
