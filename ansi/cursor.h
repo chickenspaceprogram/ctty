@@ -1,6 +1,8 @@
 #ifndef ANSI_CURSOR_H
 #define ANSI_CURSOR_H
 
+#include <stdio.h>
+
 #include "../keypress.h"
 
 typedef struct position {
