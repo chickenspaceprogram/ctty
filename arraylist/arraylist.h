@@ -88,7 +88,7 @@ struct array_list {
     size_t (*len)(ArrayList *);
 };
 
-ArrayList newArrayList(size_t element_size);
+ArrayList *newArrayList(size_t element_size);
 
 
 #endif

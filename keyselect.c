@@ -9,28 +9,28 @@ int select_char(sequence *sequences, int num_sequences) {
 }
 
 int check_char(sequence *sequences, int num_sequences) {
-    int valid_matches[num_sequences];
-    int longest_match = -1;
-    int j = 0;
-    int current_char = 0;
-    int num_chars_left = num_sequences;
-
+    ArrayList *valid_matches = newArrayList(sizeof(int));
+    int longest_match = -1, j = 0, current_char = 0, num_chars_left = num_sequences, one = 1, zero = 0;
+    void *is_valid_ptr;
 
     for (int i = 0; i < num_sequences; ++i) {
-        valid_matches[i] = 1;
+        valid_matches->push(valid_matches, &one); // setting valid_matches[i] = 1
     }
 
 
     while (num_chars_left > 0) {
         current_char = GETCH();
         for (int i = 0; i < num_sequences; ++i) {
-            if (valid_matches[i]) {
+
+            is_valid_ptr = valid_matches->get(valid_matches, i); // not checking for null since we're always inside the bounds of the arraylist
+
+            if (*(int *)is_valid_ptr) {
                 if (current_char != sequences[i].chars[j]) {
-                    valid_matches[i] = 0;
+                    valid_matches->set(valid_matches, i, &zero); // setting valid_matches[i] = 0
                     --num_chars_left;
                 }
                 else if (j == sequences[i].len - 1) {
-                    valid_matches[i] = 0;
+                    valid_matches->set(valid_matches, i, &zero); // setting valid_matches[i] = 0
                     longest_match = i;
                     --num_chars_left;
                 }

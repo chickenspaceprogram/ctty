@@ -1,6 +1,7 @@
 #ifndef KEYSELECT_H
 #define KEYSELECT_H
 #include "keypress.h"
+#include "arraylist/arraylist.h"
 
 /**
  * Struct name: sequence
