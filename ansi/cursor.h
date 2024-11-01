@@ -21,7 +21,6 @@ typedef struct position {
 
 #define CURSOR_TO_COL(col)              printf("\x1B[%dG", col) // Moves cursor to column `col`.
 #define CURSOR_TO_POSITION(row, col)    printf("\x1B[%d;%dH", row, col) // Moves cursor to position (row, col).
-#define CURSOR_GET_POSITION()           get_cursor_position(void) // Gets the current cursor position and returns it as a `Position` struct.
 
 #define SAVE_CURSOR                     "\x1B 7" // Saves the cursor's position
 #define LOAD_CURSOR                     "\x1B 8" // Loads the cursor from the saved position in memory
@@ -29,13 +28,13 @@ typedef struct position {
 
 
 /**
- * Function name: get_cursor_position
+ * Function name: cursor_get_position
  * Date created: 31 Oct 2024
  * Date last modified: 31 Oct 2024
  * Description: Returns a struct containing the current position of the cursor
  * Inputs: none
  * Outputs: A struct containing the current position of the cursor.
  */
-Position get_cursor_position(void);
+Position cursor_get_position(void);
 
 #endif

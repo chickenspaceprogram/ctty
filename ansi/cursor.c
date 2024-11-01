@@ -23,10 +23,11 @@ int read_number(void) {
     return num;
 }
 
-Position get_cursor_position(void) {
+Position cursor_get_position(void) {
     Position pos;
     printf("\x1B[6n");
     GETCH(); GETCH(); // getting rid of escape and `[` chars
     pos.row = read_number();
     pos.col = read_number();
+    return pos;
 }
