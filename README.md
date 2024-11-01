@@ -1,4 +1,4 @@
-# ctty
+# ctty v2.0.2
 
 A simple cross-platform terminal graphics library, written in C.
 
@@ -9,11 +9,13 @@ Project link: [ctty](https://github.com/chickenspaceprogram/ctty)
 
 To use this library, simply include this repository in your project as a git submodule (or just copy-paste all the files into a folder in your project). 
 
-How you go about configuring a build system for this project is left up to you. With a decent Makefile it's pretty easy (that's what I use). With something like Microsoft Visual Studio, it's probably a bit more annoying. You'll want to include the whole `ctty` directory in your project
+How you go about configuring a build system for this is left up to you. With a decent Makefile it's pretty easy (that's what I use). With something like Microsoft Visual Studio, it's probably a bit more annoying. You'll want to include the whole `ctty` directory in your project, so feel free to google how to do that.
 
 This project provides functions and preprocessor macros that make dealing with terminal graphics across different platforms less painful.
 It's not all-inclusive, and there's definitely things I haven't added.
-However, half the purpose of this library was to facilitate code reuse when completing programming assignments for a CS course I'm taking, so I'm more or less fine with that.
+It also hasn't yet been tested thoroughly, so please keep an eye out for bugs and open a GitHub issue if you find any.
+
+Half the purpose of this library was to facilitate code reuse when completing assignments for a CS course I'm taking, so I'm more or less fine with this being a bit rough around the edges.
 
 ### ANSI sequences
 
