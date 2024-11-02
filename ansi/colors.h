@@ -33,14 +33,14 @@
 #define FG_WHITE                    "\x1B[37m"
 
 /* Bright Colors (background) */
-#define BG_BLACK_BRIGHT             "\x1B[10m"
-#define BG_RED_BRIGHT               "\x1B[10m"
-#define BG_GREEN_BRIGHT             "\x1B[10m"
-#define BG_YELLOW_BRIGHT            "\x1B[10m"
-#define BG_BLUE_BRIGHT              "\x1B[10m"
-#define BG_MAGENTA_BRIGHT           "\x1B[10m"
-#define BG_CYAN_BRIGHT              "\x1B[10m"
-#define BG_WHITE_BRIGHT             "\x1B[10m"
+#define BG_BLACK_BRIGHT             "\x1B[100m"
+#define BG_RED_BRIGHT               "\x1B[101m"
+#define BG_GREEN_BRIGHT             "\x1B[102m"
+#define BG_YELLOW_BRIGHT            "\x1B[103m"
+#define BG_BLUE_BRIGHT              "\x1B[104m"
+#define BG_MAGENTA_BRIGHT           "\x1B[105m"
+#define BG_CYAN_BRIGHT              "\x1B[106m"
+#define BG_WHITE_BRIGHT             "\x1B[107m"
 
 /* Bright Colors (foreground) */
 #define FG_BLACK_BRIGHT             "\x1B[30m"
