@@ -27,7 +27,8 @@ typedef struct position {
 #define SAVE_CURSOR                     "\x1B 7" // Saves the cursor's position
 #define LOAD_CURSOR                     "\x1B 8" // Loads the cursor from the saved position in memory
 
-
+#define HIDE_CURSOR                     "\x1B[?25l"
+#define SHOW_CURSOR                     "\x1B[?25h"
 
 /**
  * Function name: cursor_get_position
