@@ -15,6 +15,7 @@
 #define CTTY_DOWN       {"\xE0P", 2} // down arrow key
 #define CTTY_LEFT       {"\xE0K", 2} // left arrow key
 #define CTTY_RIGHT      {"\xE0M", 2} // right arrow key
+#define CTTY_ENTER      {"\r", 1} // [Enter] key
 
 #define CTTY_DEL        {"\xE0S", 2}
 
@@ -24,6 +25,7 @@
 #define CTTY_DOWN       {"\x1B[B", 3} // down arrow key
 #define CTTY_LEFT       {"\x1B[D", 3} // left arrow key
 #define CTTY_RIGHT      {"\x1B[C", 3} // right arrow key
+#define CTTY_ENTER      {"\n", 1} // [Enter] key
 
 #define CTTY_DEL        {"\x1B[3~", 4}
 
