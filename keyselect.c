@@ -13,6 +13,11 @@ int check_char(sequence *sequences, int num_sequences) {
     // allocating the array on the heap since the size of the array is not known at compiletime
     // unfortunately, MSVC requires the array size to be known at compiletime
     int *valid_matches = (int *) malloc(num_sequences * sizeof(int));
+
+    if (valid_matches == NULL) {
+        return -1;
+    }
+    
     int longest_match = -1, j = 0, current_char = 0, num_chars_left = num_sequences;
 
     for (int i = 0; i < num_sequences; ++i) {
