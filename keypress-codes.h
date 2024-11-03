@@ -10,7 +10,7 @@
 #define CTTY_ESC        {"\x1B", 1}
 
 #define CTTY_a          {"a", 1}
-#define CTTY_b`         {"b", 1}
+#define CTTY_b          {"b", 1}
 #define CTTY_c          {"c", 1}
 #define CTTY_d          {"d", 1}
 #define CTTY_e          {"e", 1}
