@@ -31,6 +31,8 @@
 #define CTTY_9          {(unsigned char *)"9", 1}
 #define CTTY_0          {(unsigned char *)"0", 1}
 
+#define CTTY_SPACE      {(unsigned char *)" ", 1}
+
 
 #ifdef _WIN32
 
