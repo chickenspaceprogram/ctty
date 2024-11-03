@@ -9,6 +9,29 @@
 
 #define CTTY_ESC        {"\x1B", 1}
 
+#define CTTY_a          {"a", 1}
+#define CTTY_b`         {"b", 1}
+#define CTTY_c          {"c", 1}
+#define CTTY_d          {"d", 1}
+#define CTTY_e          {"e", 1}
+#define CTTY_f          {"f", 1}
+#define CTTY_g          {"g", 1}
+#define CTTY_h          {"h", 1}
+#define CTTY_i          {"i", 1}
+#define CTTY_j          {"j", 1}
+
+#define CTTY_1          {"1", 1}
+#define CTTY_2          {"2", 1}
+#define CTTY_3          {"3", 1}
+#define CTTY_4          {"4", 1}
+#define CTTY_5          {"5", 1}
+#define CTTY_6          {"6", 1}
+#define CTTY_7          {"7", 1}
+#define CTTY_8          {"8", 1}
+#define CTTY_9          {"9", 1}
+#define CTTY_0          {"0", 1}
+
+
 #ifdef _WIN32
 
 #define CTTY_UP         {"\xE0H", 2} // up arrow key
