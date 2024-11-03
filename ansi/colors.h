@@ -2,58 +2,104 @@
 #define ANSI_COLORS_H
 
 #include <stdio.h>
+#include <math.h>
 
 #ifndef RESET_GRAPHICS // only defining RESET_GRAPHICS if it has not already been defined
-#define RESET_GRAPHICS              "\x1B[0m" // resets graphics
+#define RESET_GRAPHICS  "\x1B[0m" // resets graphics
 #endif
 
+typedef enum {
+    Default = 39,
+    Black = 30,
+    Red,
+    Green,
+    Yellow,
+    Blue,
+    Magenta,
+    Cyan,
+    White,
+    BrightBlack = 90,
+    BrightRed,
+    BrightGreen,
+    BrightYellow,
+    BrightBlue,
+    BrightMagenta,
+    BrightCyan,
+    BrightWhite,
+} Color;
 
-/* Reset Colors to Defaults */
-#define BG_DEFAULT                  "\x1B[49m"
-#define FG_DEFAULT                  "\x1B[39m"
+/**
+ * Struct name: RGB
+ * Date created: 3 Nov 2024
+ * Date last modified: 3 Nov 2024
+ * Description: A struct containing fields for an RGB color.
+ * Fields: 
+ * `r` : The red value of the pixel. Should be 0-255.
+ * `g` : The green value of the pixel. Should be 0-255.
+ * `b` : The blue value of the pixel. Should be 0-255.
+ */
+typedef struct {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+} RGB;
 
-/* Normal Colors (background) */
-#define BG_BLACK                    "\x1B[40m"
-#define BG_RED                      "\x1B[41m"
-#define BG_GREEN                    "\x1B[42m"
-#define BG_YELLOW                   "\x1B[43m"
-#define BG_BLUE                     "\x1B[44m"
-#define BG_MAGENTA                  "\x1B[45m"
-#define BG_CYAN                     "\x1B[46m"
-#define BG_WHITE                    "\x1B[47m"
+/* 4-bit colors */
 
-/* Normal Colors (foreground) */
-#define FG_BLACK                    "\x1B[30m"
-#define FG_RED                      "\x1B[31m"
-#define FG_GREEN                    "\x1B[32m"
-#define FG_YELLOW                   "\x1B[33m"
-#define FG_BLUE                     "\x1B[34m"
-#define FG_MAGENTA                  "\x1B[35m"
-#define FG_CYAN                     "\x1B[36m"
-#define FG_WHITE                    "\x1B[37m"
+/**
+ * Function name: set_color
+ * Date created: 3 Nov 2024
+ * Date last modified: 3 Nov 2024
+ * Description: Sets the color of the terminal screen.
+ * Inputs: 
+ * `foreground` : An enum containing the desired color of the foreground.
+ * `background` : An enum containing the desired color of the background.
+ * Outputs: none
+ */
+void set_color(Color foreground, Color background);
 
-/* Bright Colors (background) */
-#define BG_BLACK_BRIGHT             "\x1B[100m"
-#define BG_RED_BRIGHT               "\x1B[101m"
-#define BG_GREEN_BRIGHT             "\x1B[102m"
-#define BG_YELLOW_BRIGHT            "\x1B[103m"
-#define BG_BLUE_BRIGHT              "\x1B[104m"
-#define BG_MAGENTA_BRIGHT           "\x1B[105m"
-#define BG_CYAN_BRIGHT              "\x1B[106m"
-#define BG_WHITE_BRIGHT             "\x1B[107m"
+/* 8-bit colors */
 
-/* Bright Colors (foreground) */
-#define FG_BLACK_BRIGHT             "\x1B[30m"
-#define FG_RED_BRIGHT               "\x1B[31m"
-#define FG_GREEN_BRIGHT             "\x1B[32m"
-#define FG_YELLOW_BRIGHT            "\x1B[33m"
-#define FG_BLUE_BRIGHT              "\x1B[34m"
-#define FG_MAGENTA_BRIGHT           "\x1B[35m"
-#define FG_CYAN_BRIGHT              "\x1B[36m"
-#define FG_WHITE_BRIGHT             "\x1B[37m"
+/**
+ * Function name: set_color_rgb
+ * Date created: 3 Nov 2024
+ * Date last modified: 3 Nov 2024
+ * Description: Sets the color of the terminal screen to the closest 8-bit color possible.
+ *              This is more portable than set_color_rgb, but there are only 216 colors available instead of 16 777 216 colors.
+ * Inputs: 
+ * `foreground` : A struct containing the desired color of the foreground.
+ * `background` : A struct containing the desired color of the background.
+ * Outputs: none
+ */
+void set_color_rgb(RGB foreground, RGB background);
 
-/* RGB Colors */
-#define FG_RGB(R, G, B)             printf("\x1B[38;2;%d;%d;%dm", R, G, B)
-#define BG_RGB(R, G, B)             printf("\x1B[48;2;%d;%d;%dm", R, G, B)
+/**
+ * Function name: set_color_256
+ * Date created: 3 Nov 2024
+ * Date last modified: 3 Nov 2024
+ * Description: Sets the color of the terminal screen to the desired 8-bit color sequence manually.
+ *              For information on what values to input for `foreground` and `background`, see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit.
+ * Inputs: 
+ * `foreground` : The color value of the foreground.
+ * `background` : The color value of the background.
+ * Outputs: none
+ */
+void set_color_256(unsigned char foreground, unsigned char background);
+
+/* 24-bit colors */
+
+/**
+ * Function name: set_color_rgb_24bit
+ * Date created: 3 Nov 2024
+ * Date last modified: 3 Nov 2024
+ * Description: Sets the color of the terminal screen to a chosen RGB color.
+ *              This does not appear to work properly in `Terminal.app` and possibly other terminal emulators as well.
+ *              As such, it is best to use set_color_rgb instead of this function when exact color is unimportant.
+ * Inputs: 
+ * `foreground` : A struct containing the desired color of the foreground.
+ * `background` : A struct containing the desired color of the background.
+ * Outputs: none
+ */
+void set_color_rgb_24bit(RGB foreground, RGB background);
 
 #endif

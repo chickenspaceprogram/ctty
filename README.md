@@ -1,4 +1,4 @@
-# ctty v3.3.1
+# ctty v4.0.0
 
 A simple cross-platform terminal graphics library, written in C.
 
@@ -21,7 +21,7 @@ Half the purpose of this library was to facilitate code reuse when completing as
 
 `ansi/` : A subfolder with header files making ANSI escape sequences easier to use.
 
-`ansi/colors.h` : Provides macros to set text and background color.
+`ansi/colors.h` : Provides macros and functions to set text and background color.
 
 `ansi/cursor.h` : Provides macros for handling cursor position. **Dependency:** `keypress.h`
 

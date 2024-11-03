@@ -1,4 +1,5 @@
 .DS_Store
 target/
 ctty
-
+main.c
+a.out
