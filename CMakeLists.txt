@@ -1,3 +1,10 @@
-target_include_directories()
+cmake_minimum_required(VERSION 3.15)
+project(
+    ctty
+    VERSION 5.0
+    DESCRIPTION "A simple C terminal graphics library."
+    LANGUAGES C)
 add_subdirectory(ansi)
-ADD_LIBRARY(ctty keypress-codes.h keypress.c keypress.h keyselect.c keyselect.h screen.h ansi)
+add_subdirectory(keypress)
+add_library(screen screen.h)
+target_link_libraries(ansi keypress screen)
