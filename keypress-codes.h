@@ -4,8 +4,8 @@
  * Feel free to submit a PR adding more keycodes if you want, though!
  */
 
-#ifndef KEYPRESS_CODES_H
-#define KEYPRESS_CODES_H
+#ifndef CTTY_KEYPRESS_CODES_H
+#define CTTY_KEYPRESS_CODES_H
 
 #define CTTY_ESC        {(unsigned char *)"\x1B", 1}
 

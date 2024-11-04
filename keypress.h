@@ -1,5 +1,5 @@
-#ifndef KEYPRESS_H
-#define KEYPRESS_H
+#ifndef CTTY_KEYPRESS_H
+#define CTTY_KEYPRESS_H
 
 #include <stdio.h>
 

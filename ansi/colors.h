@@ -1,5 +1,5 @@
-#ifndef ANSI_COLORS_H
-#define ANSI_COLORS_H
+#ifndef CTTY_ANSI_COLORS_H
+#define CTTY_ANSI_COLORS_H
 
 #include <stdio.h>
 #include <math.h>

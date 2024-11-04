@@ -1,5 +1,5 @@
-#ifndef ANSI_CURSOR_H
-#define ANSI_CURSOR_H
+#ifndef CTTY_ANSI_CURSOR_H
+#define CTTY_ANSI_CURSOR_H
 
 #include <stdio.h>
 

@@ -1,5 +1,5 @@
-#ifndef ANSI_ERASE_H
-#define ANSI_ERASE_H
+#ifndef CTTY_ANSI_ERASE_H
+#define CTTY_ANSI_ERASE_H
 
 #define ERASE_CURSOR_TO_END         "\x1B[0J"
 #define ERASE_TO_CURSOR             "\x1B[1J"

@@ -1,5 +1,5 @@
-#ifndef KEYSELECT_H
-#define KEYSELECT_H
+#ifndef CTTY_KEYSELECT_H
+#define CTTY_KEYSELECT_H
 #include "keypress.h"
 #include <stdlib.h>
 

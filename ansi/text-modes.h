@@ -1,5 +1,5 @@
-#ifndef ANSI_TEXT_MODES_H
-#define ANSI_TEXT_MODES_H
+#ifndef CTTY_ANSI_TEXT_MODES_H
+#define CTTY_ANSI_TEXT_MODES_H
 
 #ifndef RESET_GRAPHICS // only defining RESET_GRAPHICS if it has not already been defined
 #define RESET_GRAPHICS              "\x1B[0m" // resets graphics

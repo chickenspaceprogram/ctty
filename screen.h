@@ -1,5 +1,5 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef CTTY_SCREEN_H
+#define CTTY_SCREEN_H
 
 #include <stdio.h>
 #include <stdlib.h>
