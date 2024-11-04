@@ -19,6 +19,7 @@
 #define CTTY_h          {(unsigned char *)"h", 1}
 #define CTTY_i          {(unsigned char *)"i", 1}
 #define CTTY_j          {(unsigned char *)"j", 1}
+#define CTTY_k          {(unsigned char *)"k", 1}
 
 #define CTTY_1          {(unsigned char *)"1", 1}
 #define CTTY_2          {(unsigned char *)"2", 1}
