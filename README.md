@@ -1,4 +1,4 @@
-# ctty v5.0.0
+# ctty v5.0.3
 
 A simple cross-platform terminal graphics library, written in C.
 
@@ -6,20 +6,13 @@ Developer: [chickenspaceprogram](https://github.com/chickenspaceprogram)
 
 Project link: [ctty](https://github.com/chickenspaceprogram/ctty)
 
-
-To use this library, simply include this repository in your project as a git submodule (or just copy-paste all the files into a folder in your project). 
-
-How you go about configuring a build system for this is left up to you. With a decent Makefile it's pretty easy (that's what I use). With something like Microsoft Visual Studio, it's probably a bit more annoying. You'll want to include the whole `ctty` directory in your project, so feel free to google how to do that.
-
 This project provides functions and preprocessor macros that make dealing with terminal graphics across different platforms less painful.
 It's not all-inclusive, and there's definitely things I haven't added.
 It also hasn't yet been tested thoroughly, so please keep an eye out for bugs and open a GitHub issue if you find any.
 
-Half the purpose of this library was to facilitate code reuse when completing assignments for a CS course I'm taking, so I'm more or less fine with this being a bit rough around the edges.
+To use this library, simply include this repository in your project as a git submodule (or just copy-paste all the files into a folder in your project). Then, you can use CMake to link the library. Just use `add_subdirectory()` to add `ctty` to your project, and `target_link_libraries()` to link it. If you encounter issues, please make a GitHub issue. I'm not the most experienced with CMake so it's possible I messed something up when configuring it.
 
 ### ANSI sequences
-
-`ansi/` : A subfolder with header files making ANSI escape sequences easier to use.
 
 `ansi/colors.h` : Provides macros and functions to set text and background color.
 
@@ -29,12 +22,18 @@ Half the purpose of this library was to facilitate code reuse when completing as
 
 `ansi/text-modes.h` : Provides macros for changing the text mode to and from bold, underline, and other modes.
 
+### Keypress detection
+
+`keypress/keypress.h` : Provides macros to detect the user's keypress immediately, without echoing or buffering their input.
+
+`keypress/keyselect.h` : Provides a function to detect and accept only certain keypresses.
+
+`keypress/keypress-codes.h` : Provides macros to make interacting with `keyselect.h` less painful.
+
+### Nice menus
+
+`menu.h` : 
+
 ### Other stuff
 
-`screen.h` : Provides macros to clear the screen and wait for a user's next keypress. **Dependency:** `keypress.h`
-
-`keypress.h` : Provides functions and macros to facilitate detecting keypresses without waiting for the user to press [Enter].
-
-`keyselect.h` : Provides a simple way to detect and return only certain keypresses. **Dependency:** `keypress.h`
-
-`keycodes.h` : A header file containing preprocessor macros for common keycodes.
+`screen/screen.h` : Provides macros to clear the screen and wait for a user's next keypress. **Dependency:** `keypress.h`

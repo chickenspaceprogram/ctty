@@ -32,7 +32,7 @@ int select_char(sequence *sequences, int num_sequences);
  * Function name: check_char
  * Date created: 10/29/2024
  * Date last modified: 10/29/2024
- * Description: 
+ * Description: Detects whether there is input in stdin matching a valid sequence.
  * Inputs: 
  * `sequences` : An array containing sequence structs for the escape sequences to be entered.
  * `num_sequences` : The number of sequences in `char_sequences`.

@@ -6,4 +6,9 @@
 #include "../keypress/keypress-codes.h"
 #include <stdio.h>
 
-size_t menu(char **options, char *title, size_t num_options);
+typedef struct {
+    unsigned char *msg;
+    unsigned char *sequence;
+} Option;
+
+size_t menu(Option *options, unsigned char *title, size_t num_options);
