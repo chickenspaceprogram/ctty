@@ -32,7 +32,7 @@ To use this library, simply include this repository in your project as a git sub
 
 ### Nice menus
 
-`menu.h` : 
+`menu.h` : Displays a nice menu and allows the user to select their desired option using the arrow keys or using user-defined hotkeys.
 
 ### Other stuff
 
