@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "../keypress.h"
+#include "../keypress/keypress.h"
 
 typedef struct position {
     int row;
