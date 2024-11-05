@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 project(keypress)
 
-set(KEYPRESS_SOURCES colors.c colors.h cursor.c cursor.h erase.h text-modes.h)
-add_library(keypress ${ANSI_SOURCES})
-target_link_libraries(ansi keypress screen)
+set(KEYPRESS_SOURCES keypress-codes.h keypress.c keypress.h keyselect.c keyselect.h)
+add_library(keypress ${KEYPRESS_SOURCES})
+target_link_libraries(ansi keypress screen menu)
