@@ -3,4 +3,4 @@ project(menu C)
 
 set(MENU_SOURCES menu.c menu.h)
 add_library(menu ${MENU_SOURCES})
-target_link_libraries(ansi keypress screen menu)
+target_link_libraries(menu ansi keypress screen)

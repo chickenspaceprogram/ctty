@@ -3,4 +3,4 @@ project(keypress)
 
 set(KEYPRESS_SOURCES keypress-codes.h keypress.c keypress.h keyselect.c keyselect.h)
 add_library(keypress ${KEYPRESS_SOURCES})
-target_link_libraries(ansi keypress screen menu)
+target_link_libraries(menu ansi keypress screen)
