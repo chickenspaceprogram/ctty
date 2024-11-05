@@ -9,4 +9,4 @@ add_subdirectory(keypress)
 add_subdirectory(screen)
 add_subdirectory(menu)
 #add_executable(main "main.c") // for testing purposes
-target_link_libraries(main PUBLIC ansi keypress screen menu)
+target_link_libraries(ctty PUBLIC ansi keypress screen menu)
