@@ -1,4 +1,4 @@
-# ctty v5.0.5
+# ctty v5.0.6
 
 A simple cross-platform terminal graphics library, written in C.
 
@@ -16,7 +16,7 @@ To use this library, simply include this repository in your project as a git sub
 
 `ansi/colors.h` : Provides macros and functions to set text and background color.
 
-`ansi/cursor.h` : Provides macros for handling cursor position. **Dependency:** `keypress.h`
+`ansi/cursor.h` : Provides macros for handling cursor position.
 
 `ansi/erase.h` : Provides macros for erasing part or all of the screen.
 
@@ -36,4 +36,4 @@ To use this library, simply include this repository in your project as a git sub
 
 ### Other stuff
 
-`screen/screen.h` : Provides macros to clear the screen and wait for a user's next keypress. **Dependency:** `keypress.h`
+`screen/screen.h` : Provides macros to clear the screen and wait for a user's next keypress.
