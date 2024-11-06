@@ -1,3 +1,5 @@
+#ifndef MENU_MENU_H
+#define MENU_MENU_H
 #include <stddef.h>
 #include <string.h>
 #include "../ansi/text-modes.h"
@@ -12,3 +14,5 @@ typedef struct {
 } Option;
 
 size_t menu(Option *options, unsigned char *title, size_t num_options);
+
+#ifndef
