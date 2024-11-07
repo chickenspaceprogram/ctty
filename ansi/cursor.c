@@ -25,8 +25,15 @@ int read_number(void) {
 
 Position cursor_get_position(void) {
     Position pos;
+    int ch;
+
+    // printing an escape sequence that makes the terminal put a string of the form "ESC[{row};{col}R" onto stdin, where ESC is the escape character (0x1B), {row} is a number indicating the cursor row, and {col} is a number indicating the cursor column
     printf("\x1B[6n");
-    GETCH(); GETCH(); // getting rid of escape and `[` chars
+
+    while ((ch = GETCH()) != '\x1B'); // turns out that if there are keypresses left in stdin they can ruin your day if you don't clear them. you don't wanna know how long this took me to debug.
+    GETCH(); // getting rid of `[`
+
+    // reading row and column, and returning position
     pos.row = read_number();
     pos.col = read_number();
     return pos;
