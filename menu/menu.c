@@ -8,16 +8,64 @@ typedef enum {
     Enter,
 } Keys;
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 static size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs);
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 static void print_title(unsigned char *title, size_t table_size);
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 static void print_row(unsigned char *row, size_t position, size_t len);
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 static void inverse_row(unsigned char *row, size_t position, size_t len);
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 static void print_bottom(size_t num_rows, size_t row_len);
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 static sequence *fill_sequence_array(Option *options, size_t num_options);
 
 

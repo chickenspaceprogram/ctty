@@ -13,6 +13,14 @@ typedef struct {
     unsigned char *sequence;
 } Option;
 
+/**
+ * Function name: 
+ * Date created: 5 Nov 2024
+ * Date last modified: 5 Nov 2024
+ * Description: 
+ * Inputs: 
+ * Outputs: 
+ */
 size_t menu(Option *options, unsigned char *title, size_t num_options);
 
 #endif

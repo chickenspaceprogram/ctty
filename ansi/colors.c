@@ -1,7 +1,16 @@
 #include "colors.h"
 
-static int round_double(double num);
 
+/**
+ * Function name: rescale_color
+ * Date created: 3 Nov 2024
+ * Date last modified: 6 Nov 2024
+ * Description: Rescales a 24-bit RGB color to an 8-bit RGB color.
+ *              Effectively turns a 256x256x256 color cube into a 6x6x6 color cube.
+ * Inputs:
+ * `color` : The color value to be converted
+ * Outputs: The converted color value
+ */
 static int rescale_color(unsigned char color);
 
 void set_color(Color foreground, Color background) {
@@ -23,10 +32,6 @@ void set_color_256(unsigned char foreground, unsigned char background) {
     printf("\x1B[38;5;%d;48;5;%dm", (int)foreground, (int)background);
 }
 
-int round_double(double num) {
-    return (int) num + 0.5; // pretty cursed and only works for positive numbers but
-}
-
 int rescale_color(unsigned char color) {
-    return (int)((double) color * 6 / 256 - 0.5); // converts the color that ranges 0-256 into one that ranges 1-6, then subtracts 0.5 and typecasts to int, essentially subtracting 1 and rounding to the nearest int from 0-5
+    return (int)((double) color / 51 + 0.5); // converts the color that ranges 0-255 into one that ranges 0-5, then rounds to the nearest integer value
 }
