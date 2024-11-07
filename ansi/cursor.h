@@ -33,7 +33,7 @@ typedef struct position {
 /**
  * Function name: cursor_get_position
  * Date created: 31 Oct 2024
- * Date last modified: 31 Oct 2024
+ * Date last modified: 6 Nov 2024
  * Description: Returns a struct containing the current position of the cursor
  * Inputs: none
  * Outputs: A struct containing the current position of the cursor.
