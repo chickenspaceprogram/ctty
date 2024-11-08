@@ -1,5 +1,10 @@
 #ifndef KEYSELECT_H
 #define KEYSELECT_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "keypress.h"
 #include <stdlib.h>
 
@@ -39,5 +44,9 @@ int select_char(sequence *sequences, int num_sequences);
  * Outputs: The index of the sequence that was entered, or -1 if the sequence was invalid.
  */
 int check_char(sequence *sequences, int num_sequences);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

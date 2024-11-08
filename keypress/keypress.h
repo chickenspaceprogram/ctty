@@ -1,6 +1,10 @@
 #ifndef KEYPRESS_H
 #define KEYPRESS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 
 #ifdef _WIN32
@@ -46,6 +50,10 @@ int unix_getch(void);
 
 #define NEWLINE '\n'
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif

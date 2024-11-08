@@ -7,6 +7,10 @@
 #ifndef KEYPRESS_CODES_H
 #define KEYPRESS_CODES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define CTTY_ESC        {(unsigned char *)"\x1B", 1}
 
 #define CTTY_a          {(unsigned char *)"a", 1}
@@ -56,4 +60,9 @@
 #define CTTY_DEL        {(unsigned char *)"\x1B[3~", 4}
 
 #endif
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif

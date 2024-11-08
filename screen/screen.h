@@ -1,6 +1,10 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../keypress/keypress.h"
@@ -40,5 +44,10 @@
  * Outputs: none, typecasts to void to make it clear that this is solely for pausing
  */
 #define PAUSE() (void) GETCH()
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -1,6 +1,10 @@
 #ifndef ANSI_TEXT_MODES_H
 #define ANSI_TEXT_MODES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef RESET_GRAPHICS // only defining RESET_GRAPHICS if it has not already been defined
 #define RESET_GRAPHICS              "\x1B[0m" // resets graphics
 #endif
@@ -25,5 +29,9 @@
 #define MODE_HIDDEN_RESET           "\x1B[28m"
 #define MODE_STRIKETHROUGH_RESET    "\x1B[29m" // Puts the terminal into draw mode, where line-drawing characters are drawn instead of ASCII characters
 #define MODE_DRAW_RESET             "\x1B(B" // Takes the terminal out of line-drawing mode and puts it back in ASCII mode.
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

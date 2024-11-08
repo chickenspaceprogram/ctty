@@ -1,6 +1,10 @@
 #ifndef ANSI_COLORS_H
 #define ANSI_COLORS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <math.h>
 
@@ -101,5 +105,9 @@ void set_color_256(unsigned char foreground, unsigned char background);
  * Outputs: none
  */
 void set_color_rgb_24bit(RGB foreground, RGB background);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -1,6 +1,10 @@
 #ifndef ANSI_CURSOR_H
 #define ANSI_CURSOR_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 
 #include "../keypress/keypress.h"
@@ -39,5 +43,9 @@ typedef struct position {
  * Outputs: A struct containing the current position of the cursor.
  */
 Position cursor_get_position(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
