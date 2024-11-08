@@ -45,6 +45,17 @@ extern "C" {
  */
 #define PAUSE() (void) GETCH()
 
+/**
+ * Function name: resize_screen
+ * Date created: 7 Nov 2024
+ * Date last modified: 7 Nov 2024
+ * Description: Resizes terminal screen to be `lines` by `cols`.
+ * Inputs: 
+ * `lines` : The number of lines you want the terminal to have.
+ * `cols` : The number of columns you want the terminal to have.
+ * Outputs: none
+ */
+void resize_screen(int lines, int cols);
 
 #ifdef __cplusplus
 }
