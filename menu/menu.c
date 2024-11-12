@@ -9,57 +9,65 @@ typedef enum {
 } Keys;
 
 /**
- * Function name: 
+ * Function name: find_max_msg_len
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
- * Description: 
+ * Description: Finds the length of the longest message or title in the menu.
  * Inputs: 
- * Outputs: 
+ * `options` : An array containing all the options in the menu
+ * `title` : The title of the menu
+ * `num_msgs` : The number of options in the menu.
+ * Outputs: The length of the longest message or title in the menu. 
  */
 static size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs);
 
 /**
- * Function name: 
+ * Function name: print_title
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
- * Description: 
+ * Description: Prints the title of the menu, including the borders around it.
  * Inputs: 
- * Outputs: 
+ * `title` : A string containing the title of the menu.
+ * `table_size` : The width of the table.
+ * Outputs: none
  */
 static void print_title(unsigned char *title, size_t table_size);
 
 /**
- * Function name: 
+ * Function name: print_row
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
- * Description: 
+ * Description: Prints a single row of the table in the correct place, with normal colors.
  * Inputs: 
- * Outputs: 
+ * `row` : The text of the row
+ * `position` : The position in which to print the row
+ * `len` : The length of the longest message in the menu.
+ * Outputs: none
  */
 static void print_row(unsigned char *row, size_t position, size_t len);
 
 /**
- * Function name: 
+ * Function name: inverse_row
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
  * Description: 
  * Inputs: 
- * Outputs: 
+ * Outputs: none
  */
 static void inverse_row(unsigned char *row, size_t position, size_t len);
 
 /**
- * Function name: 
+ * Function name: print_bottom
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
  * Description: 
  * Inputs: 
- * Outputs: 
+ * Outputs: none
  */
 static void print_bottom(size_t num_rows, size_t row_len);
 
 /**
- * Function name: 
+ * Function name: fill_sequence_array
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
  * Description: 
