@@ -118,7 +118,7 @@ size_t menu(Option *options, unsigned char *title, size_t num_options) {
         }
         else {
             free(seqs);
-            fputs(CURSOR_ON, stdout)
+            fputs(CURSOR_ON, stdout);
             return current_row;
         }
     }
