@@ -78,6 +78,7 @@ static sequence *fill_sequence_array(Option *options, size_t num_options);
 
 
 size_t menu(Option *options, unsigned char *title, size_t num_options) {
+    fputs(CURSOR_OFF, stdout);
     sequence *seqs = fill_sequence_array(options, num_options);
     if (seqs == NULL) {
         return -1;
@@ -117,6 +118,7 @@ size_t menu(Option *options, unsigned char *title, size_t num_options) {
         }
         else {
             free(seqs);
+            fputs(CURSOR_ON, stdout)
             return current_row;
         }
     }
