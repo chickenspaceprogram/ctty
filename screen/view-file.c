@@ -17,20 +17,21 @@ void print_file(char *filename, int clear_screen) {
 	}
 	
 	// allocating it on the stack is probably bad practice since the buffer's relatively large, but I'm lazy and this worked
-	char buffer[PAGE_SIZE]; // This could be set to all zeroes but it's unnecessary and (probably) would be marginally slower
-	int chars_read = 0;
-
+	char buffer[PAGE_SIZE + 1]; 
+	memset(buffer, '\0', PAGE_SIZE + 1);
+	
 	// if we want to clear the screen, do it now after everything's been allocated to minimize time where screen is blank
 	if (clear_screen) {
 		CLEAR_SCREEN(); // the option to not clear the screen is not used, but I want to make this function more general
 	}
 
 	do {
-		// fread() returns the number of bytes read from the buffer
-		chars_read = (int)fread(buffer, sizeof(char), PAGE_SIZE, input);
+		fread(buffer, sizeof(char), PAGE_SIZE, input);
 
-		// we can then use sizeof(char) and the number of chars read to tell fwrite() how much of the buffer we want to write to stdout
-		fwrite(buffer, sizeof(char), chars_read, stdout);
+		fputs(buffer, stdout);
+		if (!feof(input)) {
+			memset(buffer, '\0', PAGE_SIZE);
+		}
 	} while (!feof(input)); // keep looping until we reach EOF
 
 	// closing file
@@ -49,6 +50,7 @@ void print_file(char *filename, int clear_screen) {
 	strcpy(buf, "less ");
 	strcat(buf, filename);
 	system(buf);
+	free(buf);
 }
 
 #endif
