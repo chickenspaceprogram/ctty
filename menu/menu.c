@@ -31,7 +31,7 @@ static size_t find_max_msg_len(Option *options, unsigned char *title, size_t num
  * `table_size` : The width of the table.
  * Outputs: none
  */
-static void print_title(unsigned char *title, size_t table_size);
+static void print_title(char *title, size_t table_size);
 
 /**
  * Function name: print_row
@@ -77,7 +77,7 @@ static void print_bottom(size_t num_rows, size_t row_len);
 static sequence *fill_sequence_array(Option *options, size_t num_options);
 
 
-size_t menu(Option *options, unsigned char *title, size_t num_options) {
+size_t menu(Option *options, char *title, size_t num_options) {
     fputs(CURSOR_OFF, stdout);
     sequence *seqs = fill_sequence_array(options, num_options);
     if (seqs == NULL) {
@@ -136,7 +136,7 @@ size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs) 
     return longest_len;
 }
 
-void print_title(unsigned char *title, size_t table_size) {
+void print_title(char *title, size_t table_size) {
     size_t title_len = strlen((char *)title);
 
     fputs("  "MODE_DRAW"l", stdout);

@@ -26,7 +26,7 @@ typedef struct {
  * Inputs: 
  * Outputs: 
  */
-size_t menu(Option *options, unsigned char *title, size_t num_options);
+size_t menu(Option *options, char *title, size_t num_options);
 
 #ifdef __cplusplus
 }
