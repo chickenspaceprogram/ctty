@@ -11,6 +11,17 @@ extern "C" {
 
 #include "screen.h"
 
+/**
+* Function name: print_file
+* Date created: 25 Sept 2024
+* Date last modified: 12 Nov 2024
+* Description:	Prints the contents of a file to stdout.
+*				This is used to print the rules and the main menu because a bunch of printf() statements would've been extremely ugly
+* Inputs:
+* `filename` : The name of the file.
+* `clear_screen` : Whether to clear the screen before displaying the file.
+* Outputs: none
+*/
 void print_file(char *filename, int clear_screen);
 
 #ifdef __cplusplus

@@ -50,8 +50,11 @@ static void print_row(unsigned char *row, size_t position, size_t len);
  * Function name: inverse_row
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
- * Description: 
+ * Description: Prints a single row of the table in the correct place, with inverted colors.
  * Inputs: 
+ * `row` : The text of the row
+ * `position` : The position in which to print the row
+ * `len` : The length of the longest message in the menu.
  * Outputs: none
  */
 static void inverse_row(unsigned char *row, size_t position, size_t len);
@@ -60,8 +63,10 @@ static void inverse_row(unsigned char *row, size_t position, size_t len);
  * Function name: print_bottom
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
- * Description: 
+ * Description: Prints the bottom of the menu.
  * Inputs: 
+ * `num_rows` : The number of rows in the menu
+ * `row_len` : The length of each row in the menu
  * Outputs: none
  */
 static void print_bottom(size_t num_rows, size_t row_len);
@@ -70,9 +75,11 @@ static void print_bottom(size_t num_rows, size_t row_len);
  * Function name: fill_sequence_array
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
- * Description: 
+ * Description: Allocates an array of `sequence` structs on the heap, and initializes them with the correct values.
  * Inputs: 
- * Outputs: 
+ * `options` : An array of structs containing both the message and the sequence of characters that go along with each option.
+ * `num_options` : The number of options.
+ * Outputs: A pointer to the array of `sequence` structs.
  */
 static sequence *fill_sequence_array(Option *options, size_t num_options);
 

@@ -40,7 +40,7 @@ void print_file(char *filename, int clear_screen) {
 
 #else
 
-// using less because it's pretty
+// using less(1) because it's pretty
 void print_file(char *filename, int clear_screen) {
 	if (clear_screen) {
 		CLEAR_SCREEN();
