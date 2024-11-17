@@ -1,4 +1,4 @@
-# ctty v5.2.3
+# ctty v5.3.0
 
 A simple cross-platform terminal graphics library, written in C.
 
