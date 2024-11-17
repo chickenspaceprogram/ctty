@@ -1,3 +1,7 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 /**
  * A file providing preprocessor macros for common keypresses.
  * This is not all-inclusive, but it has all of the macros that I personally need and I'm not going to bother adding more.
