@@ -5,7 +5,6 @@ project(
     DESCRIPTION "A simple C terminal graphics library."
     LANGUAGES C)
 
-add_library(ctty)
 add_library(ctty INTERFACE)
 
 add_subdirectory(ansi)
