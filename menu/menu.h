@@ -46,7 +46,7 @@ size_t menu(Option *options, char *title, size_t num_options);
 /**
  * Function name: menu
  * Date created: 20 Nov 2024
- * Date last modified: 20 Nov 2024
+ * Date last modified: 21 Nov 2024
  * Description: Creates a nice menu, and allows the user to select multiple options from it.
  * Inputs: 
  * `options` : An array containing all of the possible options the user could select.
