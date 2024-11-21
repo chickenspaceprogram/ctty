@@ -2,6 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+// apologies for the poor internal design of this.
+// a lot of functions get repeated and it's in dire need of a refactor tbh
+
 #include "menu.h"
 
 typedef enum {
@@ -48,7 +51,7 @@ static void print_title(char *title, size_t table_size);
  * `len` : The length of the longest message in the menu.
  * Outputs: none
  */
-static void print_row(unsigned char *row, size_t position, size_t len);
+static void print_row(char *row, size_t position, size_t len);
 
 /**
  * Function name: inverse_row
@@ -61,7 +64,7 @@ static void print_row(unsigned char *row, size_t position, size_t len);
  * `len` : The length of the longest message in the menu.
  * Outputs: none
  */
-static void inverse_row(unsigned char *row, size_t position, size_t len);
+void inverse_row(char *row, size_t position, size_t len);
 
 /**
  * Function name: print_bottom
@@ -82,15 +85,27 @@ static void print_bottom(size_t num_rows, size_t row_len);
  * Description: Allocates an array of `sequence` structs on the heap, and initializes them with the correct values.
  * Inputs: 
  * `options` : An array of structs containing both the message and the sequence of characters that go along with each option.
+ * 
+ * 
+ * 
  * `num_options` : The number of options.
  * Outputs: A pointer to the array of `sequence` structs.
  */
-static sequence *fill_sequence_array(Option *options, size_t num_options);
+sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs);
+
+void print_row_txt(char *row, size_t len);
 
 
 size_t menu(Option *options, char *title, size_t num_options) {
+    sequence extra_seqs[5] = {
+        CTTY_UP,
+        CTTY_DOWN,
+        CTTY_k,
+        CTTY_j,
+        CTTY_ENTER,
+    };
     fputs(CURSOR_OFF, stdout);
-    sequence *seqs = fill_sequence_array(options, num_options);
+    sequence *seqs = fill_sequence_array(options, extra_seqs, num_options, 5);
     if (seqs == NULL) {
         return -1;
     }
@@ -99,8 +114,7 @@ size_t menu(Option *options, char *title, size_t num_options) {
     size_t current_row = 0, prev_row = 0;
     Keys user_selection = Enter;
     print_title(title, len);
-    inverse_row(options[0].msg, 0, len);
-    for (int i = 1; i < num_options; ++i) {
+    for (int i = 0; i < num_options; ++i) {
         print_row(options[i].msg, i, len);
     }
     print_bottom(num_options, len);
@@ -110,27 +124,101 @@ size_t menu(Option *options, char *title, size_t num_options) {
             if (user_selection != current_row) {
                 print_row(options[current_row].msg, current_row, len);
                 current_row = user_selection;
-                inverse_row(options[current_row].msg, current_row, len);
             }
         }
         else if (user_selection == (num_options) || user_selection == (num_options + 2)) {
             if (current_row > 0) {
                 print_row(options[current_row].msg, current_row, len);
                 --current_row;
-                inverse_row(options[current_row].msg, current_row, len);
             }
         }
         else if (user_selection == (num_options + 1) || user_selection == (num_options + 3)) {
             if (current_row < (num_options - 1)) {
                 print_row(options[current_row].msg, current_row, len);
                 ++current_row;
-                inverse_row(options[current_row].msg, current_row, len);
             }
         }
         else {
             free(seqs);
             fputs(CURSOR_ON, stdout);
             return current_row;
+        }
+        inverse_row(options[current_row].msg, current_row, len);
+    }
+}
+
+void multimenu(Option *options, char *title, size_t num_options, bool *selections, size_t max_num_selections) {
+    for (size_t i = 0; i < num_options; ++i) {
+        selections[i] = false;
+    }
+    sequence extra_seqs[6] = {
+        CTTY_UP,
+        CTTY_DOWN,
+        CTTY_k,
+        CTTY_j,
+        CTTY_ENTER,
+        CTTY_SPACE,
+    };
+    fputs(CURSOR_OFF, stdout);
+    sequence *seqs = fill_sequence_array(options, extra_seqs, num_options, 6);
+    if (seqs == NULL) {
+        return -1;
+    }
+
+    size_t len = find_max_msg_len(options, title, num_options);
+    size_t current_row = 0, prev_row = 0;
+    Keys user_selection = Enter;
+    print_title(title, len);
+    for (int i = 0; i < num_options; ++i) {
+        print_row(options[i].msg, i, len);
+    }
+    print_bottom(num_options, len);
+    while (1) {
+        user_selection = select_char(seqs, num_options + 5);
+        if (user_selection < num_options) {
+            if (user_selection != current_row) {
+                print_row(options[current_row].msg, current_row, len);
+                current_row = user_selection;
+            }
+        }
+        else if (user_selection == (num_options) || user_selection == (num_options + 2)) {
+            if (current_row > 0) {
+                print_row(options[current_row].msg, current_row, len);
+                --current_row;
+            }
+        }
+        else if (user_selection == (num_options + 1) || user_selection == (num_options + 3)) {
+            if (current_row < (num_options - 1)) {
+                print_row(options[current_row].msg, current_row, len);
+                ++current_row;
+            }
+        }
+        else if (user_selection == (num_options + 6)) {
+            selections[current_row] = !(selections[current_row]);
+            if (selections[current_row]) {
+                inverse_row(options[current_row].msg, current_row, len);
+            }
+            else {
+                print_row(options[current_row].msg, current_row, len);
+            }
+            continue;
+        }
+        else {
+            free(seqs);
+            fputs(CURSOR_ON, stdout);
+            return current_row;
+        }
+        if (current_row != 0) {
+            CURSOR_DOWN_LINE_START(current_row);
+        }
+        fputs("> ", stdout);
+        print_row_txt(options[current_row].msg, len);
+        fputs(" <", stdout);
+        if (current_row != 0) {
+            CURSOR_UP_LINE_START(current_row);
+        }
+        else {
+            putchar('\r');
         }
     }
 }
@@ -169,7 +257,7 @@ void print_title(char *title, size_t table_size) {
     fputs("u\n"MODE_DRAW_RESET, stdout);
 }
 
-void print_row(unsigned char *row, size_t position, size_t len) {
+void print_row(char *row, size_t position, size_t len) {
     size_t msg_len = 0;
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
@@ -192,17 +280,17 @@ void print_row(unsigned char *row, size_t position, size_t len) {
     }
 }
 
-void inverse_row(unsigned char *row, size_t position, size_t len) {
+void inverse_row(char *row, size_t position, size_t len) {
     size_t msg_len = 0;
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
 
     fputs("> "MODE_DRAW"x "MODE_DRAW_RESET MODE_INVERSE, stdout);
-    fputs((char *)row, stdout);
+    fputs(row, stdout);
     fputs(MODE_INVERSE_RESET, stdout);
 
-    for (int i = strlen((char *)row); i < (len + 1); ++i) {
+    for (int i = strlen(row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
@@ -226,25 +314,31 @@ static void print_bottom(size_t num_rows, size_t row_len) {
     CURSOR_UP_LINE_START((int)num_rows);
 }
 
-sequence *fill_sequence_array(Option *options, size_t num_options) {
-    sequence *seqs = malloc(sizeof(sequence) * (num_options + 5));
+sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs) {
+    sequence *seqs = malloc(sizeof(sequence) * (num_options + num_extra_seqs));
     if (seqs == NULL) {
         return NULL;
     }
-    sequence default_seqs[5] = {
-        CTTY_UP,
-        CTTY_DOWN,
-        CTTY_k,
-        CTTY_j,
-        CTTY_ENTER,
-    };
 
     for (int i = 0; i < num_options; ++i) {
         seqs[i].chars = options[i].sequence;
         seqs[i].len = strlen((char *)options[i].sequence);
     }
-    for (int i = num_options; i < (num_options + 5); ++i) {
-        seqs[i] = default_seqs[i - num_options];
+    for (int i = num_options; i < (num_options + num_extra_seqs); ++i) {
+        seqs[i] = extra_seqs[i - num_options];
     }
     return seqs;
+}
+
+void print_row_txt(char *row, size_t len) {
+    size_t msg_len = 0;
+
+    fputs(MODE_DRAW"x "MODE_DRAW_RESET, stdout);
+    fputs(row, stdout);
+
+    for (int i = strlen(row); i < (len + 1); ++i) {
+        putchar(' ');
+    }
+
+    fputs(MODE_DRAW"x"MODE_DRAW_RESET, stdout);
 }
