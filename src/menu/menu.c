@@ -114,7 +114,8 @@ size_t menu(Option *options, char *title, size_t num_options) {
     size_t current_row = 0, prev_row = 0;
     Keys user_selection = Enter;
     print_title(title, len);
-    for (int i = 0; i < num_options; ++i) {
+    inverse_row(options[0].msg, 0, len);
+    for (int i = 1; i < num_options; ++i) {
         print_row(options[i].msg, i, len);
     }
     print_bottom(num_options, len);
@@ -166,9 +167,12 @@ void multimenu(Option *options, char *title, size_t num_options, bool *selection
     }
 
     size_t len = find_max_msg_len(options, title, num_options);
-    size_t current_row = 0, prev_row = 0;
+    size_t current_row = 0, prev_row = 0, num_selections = 0;
     Keys user_selection = Enter;
     print_title(title, len);
+    fputs("> ", stdout);
+    print_row_txt(options[0].msg, 0);
+    fputs(" <\r", stdout);
     for (int i = 0; i < num_options; ++i) {
         print_row(options[i].msg, i, len);
     }
@@ -195,11 +199,14 @@ void multimenu(Option *options, char *title, size_t num_options, bool *selection
         }
         else if (user_selection == (num_options + 6)) {
             selections[current_row] = !(selections[current_row]);
-            if (selections[current_row]) {
+            if (selections[current_row] && (num_selections < 3)) {
                 inverse_row(options[current_row].msg, current_row, len);
+                ++num_selections;
             }
-            else {
+            else if (!selections[current_row]) {
                 print_row(options[current_row].msg, current_row, len);
+                --num_selections;
+
             }
             continue;
         }
