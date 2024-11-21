@@ -6,7 +6,7 @@ project(
     LANGUAGES C)
 
 add_library(ctty)
-add_library(ctty::ctty ALIAS ctty)
+add_library(ctty INTERFACE)
 
 add_subdirectory(ansi)
 add_subdirectory(keypress)
