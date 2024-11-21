@@ -27,7 +27,7 @@ typedef struct option {
 
 typedef struct selections {
     bool *selections;
-    size_t num_selections
+    size_t num_selections;
 } Selections;
 
 /**
@@ -41,7 +41,7 @@ typedef struct selections {
  * `num_options` : The number of options
  * Outputs: The index of the option that the user selected.
  */
-size_t menu(Option *options, char *title, size_t num_options);
+size_t menu(Option *options, unsigned char *title, size_t num_options);
 
 /**
  * Function name: menu
@@ -56,7 +56,7 @@ size_t menu(Option *options, char *title, size_t num_options);
  * Outputs: 
  * `selections` : An array of booleans. If `selections[i] == true`, then the option was selected. If `selections[i]` == false, the option was not selected.
  */
-void multimenu(Option *options, char *title, size_t num_options, bool *selections, size_t max_num_selections);
+void multimenu(Option *options, unsigned char *title, size_t num_options, bool *selections, size_t max_num_selections);
 
 #ifdef __cplusplus
 }
