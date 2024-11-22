@@ -330,7 +330,7 @@ void inverse_row_no_marks(unsigned char *row, size_t position, size_t len) {
     }
 }
 
-static void print_bottom(size_t num_rows, size_t row_len) {
+void print_bottom(size_t num_rows, size_t row_len) {
     CURSOR_DOWN_LINE_START((int)num_rows);
     fputs("  "MODE_DRAW"m", stdout);
     for (int i = 0; i < (row_len + 2); ++i) {
