@@ -30,31 +30,6 @@ typedef enum {
 static size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs);
 
 /**
- * Function name: print_title
- * Date created: 5 Nov 2024
- * Date last modified: 5 Nov 2024
- * Description: Prints the title of the menu, including the borders around it.
- * Inputs: 
- * `title` : A string containing the title of the menu.
- * `table_size` : The width of the table.
- * Outputs: none
- */
-static void print_title(unsigned char *title, size_t table_size);
-
-/**
- * Function name: print_row
- * Date created: 5 Nov 2024
- * Date last modified: 5 Nov 2024
- * Description: Prints a single row of the table in the correct place, with normal colors.
- * Inputs: 
- * `row` : The text of the row
- * `position` : The position in which to print the row
- * `len` : The length of the longest message in the menu.
- * Outputs: none
- */
-static void print_row(unsigned char *row, size_t position, size_t len);
-
-/**
  * Function name: inverse_row
  * Date created: 5 Nov 2024
  * Date last modified: 5 Nov 2024
@@ -66,18 +41,6 @@ static void print_row(unsigned char *row, size_t position, size_t len);
  * Outputs: none
  */
 void inverse_row(unsigned char *row, size_t position, size_t len);
-
-/**
- * Function name: print_bottom
- * Date created: 5 Nov 2024
- * Date last modified: 5 Nov 2024
- * Description: Prints the bottom of the menu.
- * Inputs: 
- * `num_rows` : The number of rows in the menu
- * `row_len` : The length of each row in the menu
- * Outputs: none
- */
-static void print_bottom(size_t num_rows, size_t row_len);
 
 /**
  * Function name: fill_sequence_array
