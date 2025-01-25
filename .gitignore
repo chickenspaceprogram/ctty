@@ -1,12 +1,2 @@
 .DS_Store
-target/
-ctty
-main.c
-a.out
-CMakeFiles
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-*.a
-main
-template-header.h
+build/
