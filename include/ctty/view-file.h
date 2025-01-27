@@ -13,7 +13,7 @@ extern "C" {
 #include <stddef.h>
 #include <string.h>
 
-#include <screen.h>
+#include <ctty/screen.h>
 
 /**
 * Function name: print_file
