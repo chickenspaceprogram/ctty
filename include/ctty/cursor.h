@@ -11,7 +11,7 @@ extern "C" {
 
 #include <stdio.h>
 
-#include "../keypress/keypress.h"
+#include <ctty/keypress.h>
 
 typedef struct position {
     int row;

@@ -11,7 +11,7 @@ extern "C" {
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../keypress/keypress.h"
+#include <ctty/keypress.h>
 
 #ifdef _WIN32
 

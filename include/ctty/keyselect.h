@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-#include "keypress.h"
+#include <ctty/keypress.h>
 #include <stdlib.h>
 
 /**

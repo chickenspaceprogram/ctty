@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-#include "keypress.h"
+#include <ctty/keypress.h>
 
 #ifdef _WIN32
 #define ESC_SEQ_START 0xE0

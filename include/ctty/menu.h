@@ -11,10 +11,10 @@ extern "C" {
 
 #include <stddef.h>
 #include <string.h>
-#include "../ansi/text-modes.h"
-#include "../ansi/cursor.h"
-#include "../keypress/keyselect.h"
-#include "../keypress/keypress-codes.h"
+#include <ctty/text-modes.h>
+#include <ctty/cursor.h>
+#include <ctty/keyselect.h>
+#include <ctty/keypress-codes.h>
 #include <stdio.h>
 #include <stdbool.h>
 

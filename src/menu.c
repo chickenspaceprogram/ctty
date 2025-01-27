@@ -5,7 +5,7 @@
 // apologies for the poor internal design of this.
 // a lot of functions get repeated and it's in dire need of a refactor tbh
 
-#include "menu.h"
+#include <ctty/menu.h>
 
 typedef enum {
     Up,
