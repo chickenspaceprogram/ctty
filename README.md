@@ -12,10 +12,8 @@ It also hasn't yet been tested thoroughly, so please keep an eye out for bugs an
 
 To use this library, simply include this repository in your project as a git submodule (or just copy-paste all the files into a folder in your project).
 Then, you can use CMake to link the library. Just use `add_subdirectory()` to add `ctty` to your project, and `target_link_libraries()` to link it.
+You must also move all files in the `include` directory into wherever your project's `include` directory is. Something like `target_include_directories` will set the include directories for any specific target in your project. 
 
-To include files from this project, link them to your executable/library in CMake, and include each of them as follows in your .h/.c files:
-
-`#include <ctty/colors.h>`
 
 ### ANSI sequences
 
