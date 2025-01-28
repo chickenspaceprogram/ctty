@@ -5,6 +5,7 @@
 // apologies for the poor internal design of this.
 // a lot of functions get repeated and it's in dire need of a refactor tbh
 
+#include <stddef.h>
 #include <ctty/menu.h>
 
 typedef enum {
@@ -78,11 +79,11 @@ size_t menu(Option *options, unsigned char *title, size_t num_options) {
     }
 
     size_t len = find_max_msg_len(options, title, num_options);
-    size_t current_row = 0, prev_row = 0;
+    size_t current_row = 0;
     Keys user_selection = Enter;
     print_title(title, len);
     inverse_row(options[0].msg, 0, len);
-    for (int i = 1; i < num_options; ++i) {
+    for (size_t i = 1; i < num_options; ++i) {
         print_row(options[i].msg, i, len);
     }
     print_bottom(num_options, len);
@@ -134,13 +135,13 @@ void multimenu(Option *options, unsigned char *title, size_t num_options, bool *
     }
 
     size_t len = find_max_msg_len(options, title, num_options);
-    size_t current_row = 0, prev_row = 0, num_selections = 0;
+    size_t current_row = 0, num_selections = 0;
     Keys user_selection = Enter;
     print_title(title, len);
     fputs("> ", stdout);
     print_row_txt(options[0].msg, len);
     fputs(" <\r", stdout);
-    for (int i = 1; i < num_options; ++i) {
+    for (size_t i = 1; i < num_options; ++i) {
         print_row(options[i].msg, i, len);
     }
     print_bottom(num_options, len);
@@ -214,7 +215,7 @@ void multimenu(Option *options, unsigned char *title, size_t num_options, bool *
 size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs) {
     size_t longest_len = strlen((char *)title);
     size_t current_len;
-    for (int i = 0; i < num_msgs; ++i) {
+    for (size_t i = 0; i < num_msgs; ++i) {
         if ((current_len = strlen((char *)options[i].msg)) > longest_len) {
             longest_len = current_len;
         }
@@ -223,29 +224,26 @@ size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs) 
 }
 
 void print_title(unsigned char *title, size_t table_size) {
-    size_t title_len = strlen((char *)title);
-
     fputs("  "MODE_DRAW"l", stdout);
-    for (int i = 0; i < (table_size + 2); ++i) {
+    for (size_t i = 0; i < (table_size + 2); ++i) {
         putchar('q');
     }
     fputs("k\n  x "MODE_DRAW_RESET, stdout);
 
     fputs((char *)title, stdout);
-    for (int i = strlen((char *)title); i < (table_size + 1); ++i) {
+    for (size_t i = strlen((char *)title); i < (table_size + 1); ++i) {
         putchar(' ');
     }
 
     fputs(MODE_DRAW"x\n  t", stdout);
 
-    for (int i = 0; i < (table_size + 2); ++i) {
+    for (size_t i = 0; i < (table_size + 2); ++i) {
         putchar('q');
     }
     fputs("u\n"MODE_DRAW_RESET, stdout);
 }
 
 void print_row(unsigned char *row, size_t position, size_t len) {
-    size_t msg_len = 0;
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
@@ -264,7 +262,6 @@ void print_row(unsigned char *row, size_t position, size_t len) {
 }
 
 void print_row_with_marks(unsigned char *row, size_t position, size_t len) {
-    size_t msg_len = 0;
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
@@ -283,7 +280,6 @@ void print_row_with_marks(unsigned char *row, size_t position, size_t len) {
 }
 
 void inverse_row(unsigned char *row, size_t position, size_t len) {
-    size_t msg_len = 0;
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
@@ -292,7 +288,7 @@ void inverse_row(unsigned char *row, size_t position, size_t len) {
     fputs((char *)row, stdout);
     fputs(MODE_INVERSE_RESET, stdout);
 
-    for (int i = strlen((char *)row); i < (len + 1); ++i) {
+    for (size_t i = strlen((char *)row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
@@ -307,7 +303,6 @@ void inverse_row(unsigned char *row, size_t position, size_t len) {
 }
 
 void inverse_row_no_marks(unsigned char *row, size_t position, size_t len) {
-    size_t msg_len = 0;
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
@@ -316,7 +311,7 @@ void inverse_row_no_marks(unsigned char *row, size_t position, size_t len) {
     fputs((char *)row, stdout);
     fputs(MODE_INVERSE_RESET, stdout);
 
-    for (int i = strlen((char *)row); i < (len + 1); ++i) {
+    for (size_t i = strlen((char *)row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
@@ -333,7 +328,7 @@ void inverse_row_no_marks(unsigned char *row, size_t position, size_t len) {
 void print_bottom(size_t num_rows, size_t row_len) {
     CURSOR_DOWN_LINE_START((int)num_rows);
     fputs("  "MODE_DRAW"m", stdout);
-    for (int i = 0; i < (row_len + 2); ++i) {
+    for (size_t i = 0; i < (row_len + 2); ++i) {
         putchar('q');
     }
     fputs("j"MODE_DRAW_RESET, stdout);
@@ -346,23 +341,21 @@ sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_
         return NULL;
     }
 
-    for (int i = 0; i < num_options; ++i) {
+    for (size_t i = 0; i < num_options; ++i) {
         seqs[i].chars = options[i].sequence;
         seqs[i].len = strlen((char *)options[i].sequence);
     }
-    for (int i = num_options; i < (num_options + num_extra_seqs); ++i) {
+    for (size_t i = num_options; i < (num_options + num_extra_seqs); ++i) {
         seqs[i] = extra_seqs[i - num_options];
     }
     return seqs;
 }
 
 void print_row_txt(unsigned char *row, size_t len) {
-    size_t msg_len = 0;
-
     fputs(MODE_DRAW"x "MODE_DRAW_RESET, stdout);
     fputs((char *)row, stdout);
 
-    for (int i = strlen((char *)row); i < (len + 1); ++i) {
+    for (size_t i = strlen((char *)row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
