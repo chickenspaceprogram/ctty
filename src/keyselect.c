@@ -36,7 +36,7 @@ int check_char(sequence *sequences, int num_sequences) {
                     valid_matches[i] = 0;
                     --num_chars_left;
                 }
-                else if (j == sequences[i].len - 1) {
+                else if (j >= sequences[i].len - 1) {
                     valid_matches[i] = 0;
                     longest_match = i;
                     --num_chars_left;
