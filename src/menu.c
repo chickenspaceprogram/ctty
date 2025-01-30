@@ -372,7 +372,6 @@ void print_progress_bar(int bar_length, int total_length) {
         putchar(' ');
     }
     putchar(']');
-
-    CURSOR_TO_COL(1);
+    putchar('\r'); // this is the first time i've used a carriage return without a newline
 }
 
