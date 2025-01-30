@@ -372,6 +372,7 @@ void print_progress_bar(int bar_length, int total_length) {
         putchar(' ');
     }
     putchar(']');
-    CURSOR_LEFT(total_length + 2);
+    putchar('\n');
+    //CURSOR_LEFT(total_length + 2);
 }
 
