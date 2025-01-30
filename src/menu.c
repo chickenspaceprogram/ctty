@@ -368,11 +368,11 @@ void print_progress_bar(int bar_length, int total_length) {
     for (int i = 0; i < bar_length; ++i) {
         putchar('=');
     }
-    for (int i = 0; i > total_length - bar_length; ++i) {
+    for (int i = 0; i < total_length - bar_length; ++i) {
         putchar(' ');
     }
     putchar(']');
-    putchar('\n');
-    //CURSOR_LEFT(total_length + 2);
+    //putchar('\n');
+    CURSOR_LEFT(total_length + 2);
 }
 
