@@ -361,3 +361,18 @@ void print_row_txt(unsigned char *row, size_t len) {
 
     fputs(MODE_DRAW"x"MODE_DRAW_RESET, stdout);
 }
+
+
+void print_progress_bar(int bar_length, int total_length) {
+    putchar('[');
+    for (int i = 0; i < bar_length; ++i) {
+        putchar('=');
+    }
+    for (int i = 0; i > total_length - bar_length; ++i) {
+        putchar(' ');
+    }
+    putchar(']');
+
+    CURSOR_TO_COL(1);
+}
+

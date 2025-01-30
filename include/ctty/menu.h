@@ -95,6 +95,8 @@ void print_title(unsigned char *title, size_t table_size);
  */
 void print_bottom(size_t num_rows, size_t row_len);
 
+void print_progress_bar(int bar_length, int total_length);
+
 #ifdef __cplusplus
 }
 #endif
