@@ -5,7 +5,6 @@
 // apologies for the poor internal design of this.
 // a lot of functions get repeated and it's in dire need of a refactor tbh
 
-#include <stddef.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>

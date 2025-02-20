@@ -9,6 +9,8 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
+
 // `msg` is the message to be displayed for the option
 // `sequence` is the sequence of keypresses that will select the option
 typedef struct option {
