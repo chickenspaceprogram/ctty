@@ -2,21 +2,29 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+#include <stdio.h>
+#include <stddef.h>
+#include <string.h>
+
 #include <ctty/view-file.h>
+#include <ctty/keypress.h>
+#include <ctty/screen.h>
+#include <ctty/cursor.h>
 
 #define PAGE_SIZE 4096
 
-#ifdef _WIN32
+//#ifdef _WIN32
 
-void print_file(char *filename, int clear_screen) {
+
+void print_file(char *filename, int should_clear_screen) {
 
 	// opening file, ensuring it is non-null
 	FILE* input = fopen(filename, "r");
 	if (input == NULL) {
 		printf("An error occurred while loading the file `%s`.\n\nPress any key to continue . . . ", filename);
-		CURSOR_OFF();
+		fputs(CURSOR_OFF, stdout);
 		PAUSE();
-		CURSOR_ON();
+		fputs(CURSOR_ON, stdout);
 		return;
 	}
 	
@@ -25,8 +33,8 @@ void print_file(char *filename, int clear_screen) {
 	memset(buffer, '\0', PAGE_SIZE + 1);
 	
 	// if we want to clear the screen, do it now after everything's been allocated to minimize time where screen is blank
-	if (clear_screen) {
-		CLEAR_SCREEN(); // the option to not clear the screen is not used, but I want to make this function more general
+	if (should_clear_screen) {
+		clear_screen(); // the option to not clear the screen is not used, but I want to make this function more general
 	}
 
 	do {
@@ -41,20 +49,3 @@ void print_file(char *filename, int clear_screen) {
 	// closing file
 	fclose(input);
 }
-
-#else
-
-// using less(1) because it's pretty
-void print_file(char *filename, int clear_screen) {
-	if (clear_screen) {
-		CLEAR_SCREEN();
-	}
-	size_t len = strlen(filename);
-	char *buf = calloc(len + 6, sizeof(char));
-	strcpy(buf, "less ");
-	strcat(buf, filename);
-	system(buf);
-	free(buf);
-}
-
-#endif

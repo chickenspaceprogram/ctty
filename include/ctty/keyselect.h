@@ -9,9 +9,6 @@
 extern "C" {
 #endif
 
-#include <ctty/keypress.h>
-#include <stdlib.h>
-
 /**
  * Struct name: sequence
  * Date created: 10/29/2024

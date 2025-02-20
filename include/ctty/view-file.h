@@ -9,12 +9,6 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-#include <stddef.h>
-#include <string.h>
-
-#include <ctty/screen.h>
-
 /**
 * Function name: print_file
 * Date created: 25 Sept 2024

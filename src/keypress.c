@@ -9,6 +9,10 @@
 #else
 #define ESC_SEQ_START 0x1B
 
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
+
 // credit goes to the manpage for termios for explaining how this stuff works, this code may be unreadable but it does at least work!
 int unix_getch(void) {
 	// declaring structs that contain the terminal information

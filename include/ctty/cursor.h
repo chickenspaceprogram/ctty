@@ -9,9 +9,6 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-
-#include <ctty/keypress.h>
 
 typedef struct position {
     int row;

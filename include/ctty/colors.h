@@ -9,9 +9,6 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-#include <math.h>
-
 #ifndef RESET_GRAPHICS // only defining RESET_GRAPHICS if it has not already been defined
 #define RESET_GRAPHICS  "\x1B[0m" // resets graphics
 #endif

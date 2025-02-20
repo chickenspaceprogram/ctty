@@ -6,7 +6,18 @@
 // a lot of functions get repeated and it's in dire need of a refactor tbh
 
 #include <stddef.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
 #include <ctty/menu.h>
+
+#include <ctty/text-modes.h>
+#include <ctty/cursor.h>
+#include <ctty/keyselect.h>
+#include <ctty/keypress-codes.h>
+
 
 typedef enum {
     Up,

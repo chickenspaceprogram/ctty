@@ -9,8 +9,6 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-
 #ifdef _WIN32
 #include <conio.h>
 
@@ -28,8 +26,6 @@ extern "C" {
 #define NEWLINE '\r'
 
 #else
-#include <termios.h>
-#include <unistd.h>
 /**
  * Function name: unix_getch
  * Date created: 10/19/2024
@@ -55,6 +51,16 @@ int unix_getch(void);
 #define NEWLINE '\n'
 
 #endif
+
+/**
+ * Macro name: PAUSE
+ * Date created: 10/24/2024
+ * Date last modified: 10/24/2024
+ * Description: Pauses the program's execution until the user presses any key.
+ * Inputs: none
+ * Outputs: none, typecasts to void to make it clear that this is solely for pausing
+ */
+#define PAUSE() (void) GETCH()
 
 #ifdef __cplusplus
 }

@@ -2,7 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+#include <stdlib.h>
+
 #include <ctty/keyselect.h>
+#include <ctty/keypress.h>
+
 
 int select_char(sequence *sequences, int num_sequences) {
     int ch = check_char(sequences, num_sequences);

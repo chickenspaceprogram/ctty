@@ -9,15 +9,6 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-#include <string.h>
-#include <ctty/text-modes.h>
-#include <ctty/cursor.h>
-#include <ctty/keyselect.h>
-#include <ctty/keypress-codes.h>
-#include <stdio.h>
-#include <stdbool.h>
-
 // `msg` is the message to be displayed for the option
 // `sequence` is the sequence of keypresses that will select the option
 typedef struct option {
