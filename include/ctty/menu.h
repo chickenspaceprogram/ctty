@@ -15,8 +15,8 @@ extern "C" {
 // `msg` is the message to be displayed for the option
 // `sequence` is the sequence of keypresses that will select the option
 typedef struct option {
-    unsigned char *msg;
-    unsigned char *sequence;
+    const char *msg;
+    unsigned const char *sequence;
 } Option;
 
 typedef struct selections {
@@ -35,7 +35,7 @@ typedef struct selections {
  * `num_options` : The number of options
  * Outputs: The index of the option that the user selected.
  */
-size_t menu(Option *options, unsigned char *title, size_t num_options);
+size_t menu(Option *options, const char *title, size_t num_options);
 
 /**
  * Function name: menu
@@ -50,7 +50,7 @@ size_t menu(Option *options, unsigned char *title, size_t num_options);
  * Outputs: 
  * `selections` : An array of booleans. If `selections[i] == true`, then the option was selected. If `selections[i]` == false, the option was not selected.
  */
-void multimenu(Option *options, unsigned char *title, size_t num_options, bool *selections, size_t max_num_selections);
+void multimenu(Option *options, const char *title, size_t num_options, bool *selections, size_t max_num_selections);
 
 /**
  * Function name: print_row
@@ -63,7 +63,7 @@ void multimenu(Option *options, unsigned char *title, size_t num_options, bool *
  * `len` : The length of the longest message in the menu.
  * Outputs: none
  */
-void print_row(unsigned char *row, size_t position, size_t len);
+void print_row(const char *row, size_t position, size_t len);
 
 /**
  * Function name: print_title
@@ -75,7 +75,7 @@ void print_row(unsigned char *row, size_t position, size_t len);
  * `table_size` : The width of the table.
  * Outputs: none
  */
-void print_title(unsigned char *title, size_t table_size);
+void print_title(const char *title, size_t table_size);
 
 /**
  * Function name: print_bottom

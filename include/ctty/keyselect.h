@@ -18,7 +18,7 @@ extern "C" {
  * `len` : The length of the sequence. For example, "abcd" has a length of 4.
  */
 typedef struct sequence {
-    unsigned char *chars; // An array containing the sequence of characters in the sequence.
+    unsigned const char *chars; // An array containing the sequence of characters in the sequence.
     int len; // The length of the sequence. For example, "abcd" has a length of 4.
 } sequence;
 

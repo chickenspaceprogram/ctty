@@ -37,7 +37,7 @@ typedef enum {
  * `num_msgs` : The number of options in the menu.
  * Outputs: The length of the longest message or title in the menu. 
  */
-static size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs);
+static size_t find_max_msg_len(Option *options, const char *title, size_t num_msgs);
 
 /**
  * Function name: inverse_row
@@ -50,7 +50,7 @@ static size_t find_max_msg_len(Option *options, unsigned char *title, size_t num
  * `len` : The length of the longest message in the menu.
  * Outputs: none
  */
-void inverse_row(unsigned char *row, size_t position, size_t len);
+void inverse_row(const char *row, size_t position, size_t len);
 
 /**
  * Function name: fill_sequence_array
@@ -67,13 +67,13 @@ void inverse_row(unsigned char *row, size_t position, size_t len);
  */
 sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs);
 
-void print_row_txt(unsigned char *row, size_t len);
+void print_row_txt(const char *row, size_t len);
 
-void print_row_with_marks(unsigned char *row, size_t position, size_t len);
+void print_row_with_marks(const char *row, size_t position, size_t len);
 
-void inverse_row_no_marks(unsigned char *row, size_t position, size_t len);
+void inverse_row_no_marks(const char *row, size_t position, size_t len);
 
-size_t menu(Option *options, unsigned char *title, size_t num_options) {
+size_t menu(Option *options, const char *title, size_t num_options) {
     sequence extra_seqs[5] = {
         CTTY_UP,
         CTTY_DOWN,
@@ -125,7 +125,7 @@ size_t menu(Option *options, unsigned char *title, size_t num_options) {
     }
 }
 
-void multimenu(Option *options, unsigned char *title, size_t num_options, bool *selections, size_t max_num_selections) {
+void multimenu(Option *options, const char *title, size_t num_options, bool *selections, size_t max_num_selections) {
     for (size_t i = 0; i < num_options; ++i) {
         selections[i] = false;
     }
@@ -221,7 +221,7 @@ void multimenu(Option *options, unsigned char *title, size_t num_options, bool *
 }
 
 
-size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs) {
+size_t find_max_msg_len(Option *options, const char *title, size_t num_msgs) {
     size_t longest_len = strlen((char *)title);
     size_t current_len;
     for (size_t i = 0; i < num_msgs; ++i) {
@@ -232,15 +232,15 @@ size_t find_max_msg_len(Option *options, unsigned char *title, size_t num_msgs) 
     return longest_len;
 }
 
-void print_title(unsigned char *title, size_t table_size) {
+void print_title(const char *title, size_t table_size) {
     fputs("  "MODE_DRAW"l", stdout);
     for (size_t i = 0; i < (table_size + 2); ++i) {
         putchar('q');
     }
     fputs("k\n  x "MODE_DRAW_RESET, stdout);
 
-    fputs((char *)title, stdout);
-    for (size_t i = strlen((char *)title); i < (table_size + 1); ++i) {
+    fputs(title, stdout);
+    for (size_t i = strlen(title); i < (table_size + 1); ++i) {
         putchar(' ');
     }
 
@@ -252,7 +252,7 @@ void print_title(unsigned char *title, size_t table_size) {
     fputs("u\n"MODE_DRAW_RESET, stdout);
 }
 
-void print_row(unsigned char *row, size_t position, size_t len) {
+void print_row(const char *row, size_t position, size_t len) {
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
@@ -270,7 +270,7 @@ void print_row(unsigned char *row, size_t position, size_t len) {
     }
 }
 
-void print_row_with_marks(unsigned char *row, size_t position, size_t len) {
+void print_row_with_marks(const char *row, size_t position, size_t len) {
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
@@ -288,16 +288,16 @@ void print_row_with_marks(unsigned char *row, size_t position, size_t len) {
     }
 }
 
-void inverse_row(unsigned char *row, size_t position, size_t len) {
+void inverse_row(const char *row, size_t position, size_t len) {
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
 
     fputs("> "MODE_DRAW"x "MODE_DRAW_RESET MODE_INVERSE, stdout);
-    fputs((char *)row, stdout);
+    fputs(row, stdout);
     fputs(MODE_INVERSE_RESET, stdout);
 
-    for (size_t i = strlen((char *)row); i < (len + 1); ++i) {
+    for (size_t i = strlen(row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
@@ -311,16 +311,16 @@ void inverse_row(unsigned char *row, size_t position, size_t len) {
     }
 }
 
-void inverse_row_no_marks(unsigned char *row, size_t position, size_t len) {
+void inverse_row_no_marks(const char *row, size_t position, size_t len) {
     if (position != 0) {
         CURSOR_DOWN_LINE_START((int)position);
     }
 
     fputs("  "MODE_DRAW"x "MODE_DRAW_RESET MODE_INVERSE, stdout);
-    fputs((char *)row, stdout);
+    fputs(row, stdout);
     fputs(MODE_INVERSE_RESET, stdout);
 
-    for (size_t i = strlen((char *)row); i < (len + 1); ++i) {
+    for (size_t i = strlen(row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
@@ -360,7 +360,7 @@ sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_
     return seqs;
 }
 
-void print_row_txt(unsigned char *row, size_t len) {
+void print_row_txt(const char *row, size_t len) {
     fputs(MODE_DRAW"x "MODE_DRAW_RESET, stdout);
     fputs((char *)row, stdout);
 
