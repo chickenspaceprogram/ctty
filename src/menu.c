@@ -37,7 +37,7 @@ typedef enum {
  * `num_msgs` : The number of options in the menu.
  * Outputs: The length of the longest message or title in the menu. 
  */
-static size_t find_max_msg_len(Option *options, const char *title, size_t num_msgs);
+static size_t find_max_msg_len(const Option *options, const char *title, size_t num_msgs);
 
 /**
  * Function name: inverse_row
@@ -65,7 +65,7 @@ void inverse_row(const char *row, size_t position, size_t len);
  * `num_options` : The number of options.
  * Outputs: A pointer to the array of `sequence` structs.
  */
-sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs);
+sequence *fill_sequence_array(const Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs);
 
 void print_row_txt(const char *row, size_t len);
 
@@ -73,7 +73,7 @@ void print_row_with_marks(const char *row, size_t position, size_t len);
 
 void inverse_row_no_marks(const char *row, size_t position, size_t len);
 
-size_t menu(Option *options, const char *title, size_t num_options) {
+size_t menu(const Option *options, const char *title, size_t num_options) {
     sequence extra_seqs[5] = {
         CTTY_UP,
         CTTY_DOWN,
@@ -125,7 +125,7 @@ size_t menu(Option *options, const char *title, size_t num_options) {
     }
 }
 
-void multimenu(Option *options, const char *title, size_t num_options, bool *selections, size_t max_num_selections) {
+void multimenu(const Option *options, const char *title, size_t num_options, bool *selections, size_t max_num_selections) {
     for (size_t i = 0; i < num_options; ++i) {
         selections[i] = false;
     }
@@ -221,11 +221,11 @@ void multimenu(Option *options, const char *title, size_t num_options, bool *sel
 }
 
 
-size_t find_max_msg_len(Option *options, const char *title, size_t num_msgs) {
-    size_t longest_len = strlen((char *)title);
+size_t find_max_msg_len(const Option *options, const char *title, size_t num_msgs) {
+    size_t longest_len = strlen(title);
     size_t current_len;
     for (size_t i = 0; i < num_msgs; ++i) {
-        if ((current_len = strlen((char *)options[i].msg)) > longest_len) {
+        if ((current_len = strlen(options[i].msg)) > longest_len) {
             longest_len = current_len;
         }
     }
@@ -344,7 +344,7 @@ void print_bottom(size_t num_rows, size_t row_len) {
     CURSOR_UP_LINE_START((int)num_rows);
 }
 
-sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs) {
+sequence *fill_sequence_array(const Option *options, sequence *extra_seqs, size_t num_options, size_t num_extra_seqs) {
     sequence *seqs = malloc(sizeof(sequence) * (num_options + num_extra_seqs));
     if (seqs == NULL) {
         return NULL;
@@ -352,7 +352,7 @@ sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_
 
     for (size_t i = 0; i < num_options; ++i) {
         seqs[i].chars = options[i].sequence;
-        seqs[i].len = strlen((char *)options[i].sequence);
+        seqs[i].len = strlen((const char *)options[i].sequence);
     }
     for (size_t i = num_options; i < (num_options + num_extra_seqs); ++i) {
         seqs[i] = extra_seqs[i - num_options];
@@ -362,9 +362,9 @@ sequence *fill_sequence_array(Option *options, sequence *extra_seqs, size_t num_
 
 void print_row_txt(const char *row, size_t len) {
     fputs(MODE_DRAW"x "MODE_DRAW_RESET, stdout);
-    fputs((char *)row, stdout);
+    fputs(row, stdout);
 
-    for (size_t i = strlen((char *)row); i < (len + 1); ++i) {
+    for (size_t i = strlen(row); i < (len + 1); ++i) {
         putchar(' ');
     }
 
